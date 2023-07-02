@@ -39,3 +39,15 @@ window.addEventListener('DOMContentLoaded', () => {
     createTaskElement(task);
   });
 });
+
+// Add a task to the list
+function addTask() {
+  const taskInput = document.getElementById('taskInput');
+  const task = taskInput.value.trim();
+  
+  if (task !== '') {
+    createTaskElement(task);
+    saveTasksToLocalStorage(task);
+    taskInput.value = '';
+  }
+}
