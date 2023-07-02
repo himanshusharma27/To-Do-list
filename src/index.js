@@ -51,3 +51,31 @@ function addTask() {
     taskInput.value = '';
   }
 }
+
+
+// Create a new task element and append it to the list
+function createTaskElement(task) {
+  const taskList = document.getElementById('taskList');
+  const listItem = document.createElement('li');
+  const taskText = document.createTextNode(task);
+  
+  listItem.appendChild(taskText);
+  taskList.appendChild(listItem);
+  
+  listItem.addEventListener('click', () => {
+    listItem.classList.toggle('completed');
+    saveTasksToLocalStorage();
+  });
+   // Add event listener to remove a task
+   listItem.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    listItem.remove();
+    saveTasksToLocalStorage();
+  });
+}
+
+// Save tasks to local storage
+function saveTasksToLocalStorage() {
+  const tasks = Array.from(document.querySelectorAll('#taskList li')).map((task) => task.innerText);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
