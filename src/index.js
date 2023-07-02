@@ -30,3 +30,12 @@ function addTask() {
     taskInput.value = "";
   }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  const taskList = document.getElementById('taskList');
+  
+  tasks.forEach((task) => {
+    createTaskElement(task);
+  });
+});
